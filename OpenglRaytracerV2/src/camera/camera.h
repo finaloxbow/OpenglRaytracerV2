@@ -15,7 +15,7 @@ private:
 	glm::vec3 _vertical;
 
 public:
-	Camera();
+	Camera(float vfov, glm::vec3 lookFrom, glm::vec3 lookAt, glm::vec3 vup);
 
 	Ray get_ray_at_coords(uint64_t x, uint64_t y, bool addRandomOffset);
 };

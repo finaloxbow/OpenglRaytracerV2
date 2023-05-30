@@ -19,7 +19,7 @@ int main() {
 	Renderer::init();
 	Renderer renderer;
 
-	Camera camera;
+	Camera camera(90.0f, glm::vec3(-2, 2, 1), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
 	Scene scene;
 	RayCollider collider(&camera, &scene, &renderer);
 	collider.calculate_collisions();

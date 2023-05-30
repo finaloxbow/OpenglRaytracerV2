@@ -1,7 +1,7 @@
 #include "sphere.h"
 
-Sphere::Sphere(glm::vec3 center, float r)
-:center(center), radius(r) {}
+Sphere::Sphere(glm::vec3 center, float r, std::shared_ptr<Material> m)
+:center(center), radius(r), mat_ptr(m) {}
 
 bool Sphere::hit(Ray& r, float tMin, float tMax, HitRecord& rec)
 {
@@ -24,6 +24,7 @@ bool Sphere::hit(Ray& r, float tMin, float tMax, HitRecord& rec)
     rec.point = r.at(rec.t);
     glm::vec3 outwardNormal = (rec.point - center) / radius;
     rec.set_face_normal(r, outwardNormal);
+    rec.mat_ptr = mat_ptr;
 
     return true;
 }

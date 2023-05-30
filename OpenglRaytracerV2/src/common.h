@@ -51,3 +51,16 @@ inline static glm::vec3 randomInUnitSphere() {
 
 	return glm::vec3(0, 0, 0);
 }
+
+inline static glm::vec3 randomUnitVector() {
+	return glm::normalize(randomVec3());
+}
+
+inline static bool nearZero(glm::vec3& v) {
+	const float s = 1e-8f;
+	return (fabs(v.x) < s) && (fabs(v.y) < s) && (fabs(v.z) < s);
+}
+
+inline static glm::vec3 reflect(glm::vec3& v, glm::vec3& n) {
+	return v - 2 * glm::dot(v, n) * n;
+}

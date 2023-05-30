@@ -1,6 +1,8 @@
 #include "scene.h"
 
 #include "../common.h"
+#include "../materials/lambertian/lambertian.h"
+#include "../materials/metal/metal.h"
 
 glm::vec3 Scene::calculate_collision(Ray& r, int depth)
 {
@@ -8,11 +10,14 @@ glm::vec3 Scene::calculate_collision(Ray& r, int depth)
     
     if (depth <= 0) return glm::vec3(0, 0, 0);
 
-    if (world.hit(r, 0.0001, infinity, rec)) {
-        glm::vec3 target = rec.point + rec.normal + randomInUnitSphere();
-        glm::vec3 direction = target - rec.point;
-        Ray tmp(rec.point, direction);
-        return 0.5f * calculate_collision(tmp, depth - 1);
+    if (world.hit(r, 0.0001f, infinity, rec)) {
+        glm::vec3 temp(0);
+        Ray scattered(temp, temp);
+        glm::vec3 attenuation(0);
+        if (rec.mat_ptr.get()->scatter(r, rec, attenuation, scattered))
+            return attenuation * calculate_collision(scattered, depth - 1);
+
+        return glm::vec3(0, 0, 0);
     }
 
     glm::vec3 unit_dir = glm::normalize(r.direction());
@@ -22,8 +27,13 @@ glm::vec3 Scene::calculate_collision(Ray& r, int depth)
 
 Scene::Scene()
 {
-    world.add(std::make_shared<Sphere>(glm::vec3(0, 0, -1), 0.5));
-    world.add(std::make_shared<Sphere>(glm::vec3(0, -100.5f, -1), 100));
+    glm::vec3 purple_rgb(81.0f / 256.0f, 23.0f / 256.0f, 227.0f / 256.0f);
+    auto purple = std::make_shared<Lambertian>(purple_rgb);
+    glm::vec3 blue_rgb(31.0f / 256.0f, 199.0f / 256.0f, 255.0f / 256.0f);
+    auto blue = std::make_shared<Metal>(blue_rgb, 0.5f);
+
+    world.add(std::make_shared<Sphere>(glm::vec3(0, 0, -1), 0.5, purple));
+    world.add(std::make_shared<Sphere>(glm::vec3(0, -100.5f, -1), 100, blue));
 }
 
 

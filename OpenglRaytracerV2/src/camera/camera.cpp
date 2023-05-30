@@ -4,21 +4,26 @@
 
 #include <glm/glm.hpp>
 
-Camera::Camera()
+Camera::Camera(float vfov, glm::vec3 lookFrom, glm::vec3 lookAt, glm::vec3 vup)
 {
 	float aspect_ratio = ((float)WINDOW_WIDTH) / WINDOW_HEIGHT;
-	float viewport_height = 2.0f;
+	auto theta = degrees_to_radians(vfov);
+	auto h = tan(theta / 2.0f);
+	float viewport_height = 2.0f * h;
 	float viewport_width = aspect_ratio * viewport_height;
-	float focal_length = 1.0f;
+	
+	glm::vec3 w = glm::normalize(lookFrom - lookAt);
+	glm::vec3 u = glm::normalize(glm::cross(vup, w));
+	glm::vec3 v = glm::cross(w, u);
 
-	_origin = glm::vec3(0, 0, 0);
-	_horizontal = glm::vec3(viewport_width, 0, 0);
-	_vertical = glm::vec3(0, viewport_height, 0);
+	_origin = lookFrom;
+	_horizontal = viewport_width * u;
+	_vertical = viewport_height * v;
 	_lowerLeftCorner =
 		_origin
 		- (0.5f * _horizontal)
 		- (0.5f * _vertical)
-		- glm::vec3(0, 0, focal_length);
+		- w;
 }
 
 Ray Camera::get_ray_at_coords(uint64_t x, uint64_t y, bool addRandomOffset)

@@ -5,7 +5,7 @@
 #include "../src/renderer/renderer.h"
 
 //number of samples per pixel for antialiasing
-constexpr uint32_t samplesPerPixel = 10;
+constexpr uint32_t samplesPerPixel = 1;
 
 class RayCollider {
 private:

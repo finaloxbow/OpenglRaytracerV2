@@ -1,11 +1,17 @@
 #pragma once
 
 #include "../ray/ray.h"
+#include "../materials/material.h"
 #include <glm/glm.hpp>
+
+#include <memory>
+
+class Material;
 
 struct HitRecord {
 	glm::vec3 point;
 	glm::vec3 normal;
+	std::shared_ptr<Material> mat_ptr;
 	float t;
 	bool front_face;
 

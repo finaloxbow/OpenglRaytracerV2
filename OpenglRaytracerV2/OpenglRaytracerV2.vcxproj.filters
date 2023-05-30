@@ -51,6 +51,12 @@
     <ClCompile Include="src\hittable_objects\hittable_list\hittable_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\materials\lambertian\lambertian.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\materials\metal\metal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendor\glad\glad.h">
@@ -942,6 +948,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\hittable_objects\hittable_list\hittable_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\materials\material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\materials\lambertian\lambertian.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\materials\metal\metal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
