@@ -8,7 +8,7 @@ glm::vec3 Scene::calculate_collision(Ray& r, int depth)
     
     if (depth <= 0) return glm::vec3(0, 0, 0);
 
-    if (world.hit(r, 0, infinity, rec)) {
+    if (world.hit(r, 0.0001, infinity, rec)) {
         glm::vec3 target = rec.point + rec.normal + randomInUnitSphere();
         glm::vec3 direction = target - rec.point;
         Ray tmp(rec.point, direction);

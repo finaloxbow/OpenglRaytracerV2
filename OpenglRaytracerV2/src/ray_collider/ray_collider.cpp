@@ -17,7 +17,10 @@ void RayCollider::calculate_collisions()
 			}
 
 			float scale = 1.0f / samplesPerPixel;
-			pixelColor *= scale;
+			//pixelColor *= scale;
+			pixelColor.x = sqrt(scale * pixelColor.x);
+			pixelColor.y = sqrt(scale * pixelColor.y);
+			pixelColor.z = sqrt(scale * pixelColor.z);
 
 			glm::vec4 rgbaColor(pixelColor.x, pixelColor.y, pixelColor.z, 1.0f);
 			renderer->update_pixel(x, y, rgbaColor);
