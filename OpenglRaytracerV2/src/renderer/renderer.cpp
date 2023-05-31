@@ -67,6 +67,8 @@ void Renderer::framebuffer_setup()
 		_texture_id,
 		0
 	);
+
+	
 }
 
 void Renderer::update_frame()
@@ -83,7 +85,6 @@ void Renderer::update_frame()
 		_framebuffer
 	);
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, _framebuffer_id);
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 	glBlitFramebuffer(

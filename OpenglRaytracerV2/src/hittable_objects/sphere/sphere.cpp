@@ -1,12 +1,14 @@
 #include "sphere.h"
 
+#include <glm/gtx/norm.hpp>
+
 Sphere::Sphere(glm::vec3 center, float r, std::shared_ptr<Material> m)
 :center(center), radius(r), mat_ptr(m) {}
 
 bool Sphere::hit(Ray& r, float tMin, float tMax, HitRecord& rec)
 {
     glm::vec3 oc = r.origin() - center;
-    auto a = glm::dot(r.direction(), r.direction());
+    float a = glm::length2(r.direction());
     auto half_b = glm::dot(oc, r.direction());
     auto c = glm::dot(oc, oc) - radius*radius;
     auto discriminant = half_b * half_b - a * c;

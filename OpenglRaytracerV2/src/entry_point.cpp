@@ -13,18 +13,19 @@
 
 int main() {
 	
+	Camera camera(45.0f, glm::vec3(2, 2, -1), glm::vec3(2, 2, 0), glm::vec3(0, 1, 0));
+
 	Window::init();
-	Window window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
+	Window window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, &camera);
 	
 	Renderer::init();
 	Renderer renderer;
 
-	Camera camera(90.0f, glm::vec3(-2, 2, 1), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
 	Scene scene;
 	RayCollider collider(&camera, &scene, &renderer);
-	collider.calculate_collisions();
-
+	
 	while (window.is_alive()) {
+		collider.calculate_collisions();
 		renderer.update_frame();
 		window.update_frame();
 	}

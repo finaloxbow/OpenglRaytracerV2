@@ -2,10 +2,14 @@
 
 #include <cmath>
 #include <limits>
+#include <iostream>
+#include <cuda_runtime.h>
+#include <glm/gtx/norm.hpp>
 
 //window settings
 constexpr uint64_t WINDOW_WIDTH = 1280;
 constexpr uint64_t WINDOW_HEIGHT = 720;
+constexpr float ASPECT_RATIO = ((float)WINDOW_WIDTH) / WINDOW_HEIGHT;
 constexpr auto WINDOW_TITLE = "OpenGL Raytracer";
 
 //number of channels for rgba
@@ -45,7 +49,7 @@ inline static glm::vec3 randomVec3(float min, float max) {
 inline static glm::vec3 randomInUnitSphere() {
 	while (true) {
 		glm::vec3 p = randomVec3(-1, 1);
-		if (glm::dot(p, p) >= 1) continue;
+		if (glm::length2(p) >= 1) continue;
 		return p;
 	}
 
@@ -63,4 +67,15 @@ inline static bool nearZero(glm::vec3& v) {
 
 inline static glm::vec3 reflect(glm::vec3& v, glm::vec3& n) {
 	return v - 2 * glm::dot(v, n) * n;
+}
+
+#define checkCudaErrors(val) checkCuda((val), #val, __FILE__, __LINE__)
+inline void checkCuda(cudaError_t result, char* func, char* file, char* line) {
+	if (result) {
+		std::cerr << "CUDA error = " << static_cast<unsigned int>(result) << " at "
+			<< file << ":" << line << " '" << func << "\n";
+
+		cudaDeviceReset();
+		exit(99);
+	}
 }

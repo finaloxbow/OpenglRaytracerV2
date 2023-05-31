@@ -6,8 +6,10 @@ Metal::Metal(glm::vec3& a, float f)
 bool Metal::scatter(Ray& r, HitRecord& rec, glm::vec3& attenuation, Ray& scattered)
 {
 	glm::vec3 reflected = reflect(glm::normalize(r.direction()), rec.normal);
-	glm::vec3 temp = reflected + fuzz * randomInUnitSphere();
-	scattered = Ray(rec.point, temp);
+	scattered.set_origin(rec.point);
+	glm::vec3 rand_unit = randomUnitVector();
+	scattered.set_direction(reflected + fuzz * rand_unit);
+
 	attenuation = albedo;
 	return glm::dot(scattered.direction(), rec.normal) > 0;
 }

@@ -24,7 +24,7 @@ bool HittableList::hit(Ray& r, float tMin, float tMax, HitRecord& rec)
     bool hitAnything = false;
     float closestSoFar = tMax;
 
-    for (auto object : objects) {
+    for (auto& object : objects) {
         if (object.get()->hit(r, tMin, closestSoFar, tempRec)) {
             hitAnything = true;
             closestSoFar = tempRec.t;
