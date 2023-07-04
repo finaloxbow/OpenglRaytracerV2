@@ -4,6 +4,7 @@
 #include <limits>
 #include <iostream>
 #include <cuda_runtime.h>
+#include <device_launch_parameters.h>
 #include <glm/gtx/norm.hpp>
 
 //window settings
@@ -79,3 +80,18 @@ inline void checkCuda(cudaError_t result, char* func, char* file, char* line) {
 		exit(99);
 	}
 }
+
+class CudaManaged {
+public:
+	void* operator new(size_t len) {
+		void* ptr;
+		cudaMallocManaged(&ptr, len);
+		cudaDeviceSynchronize();
+		return ptr;
+	}
+
+	void operator delete(void* ptr) {
+		cudaDeviceSynchronize();
+		cudaFree(ptr);
+	}
+};

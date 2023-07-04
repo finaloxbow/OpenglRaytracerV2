@@ -2,10 +2,11 @@
 
 #include "../hittable_objects/hittable.h"
 #include "../ray/ray.h"
+#include "../common.h"
 
 struct HitRecord;
 
-class Material {
+class Material : public CudaManaged {
 public:
 	virtual bool scatter(
 		Ray& r,

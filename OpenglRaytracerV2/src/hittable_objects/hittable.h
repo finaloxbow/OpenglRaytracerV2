@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../ray/ray.h"
+#include "../common.h"
 #include "../materials/material.h"
 #include <glm/glm.hpp>
 
@@ -21,7 +22,7 @@ struct HitRecord {
 	}
 };
 
-class Hittable {
+class Hittable : public CudaManaged {
 public:
 	virtual bool hit(Ray& r, float tMin, float tMax, HitRecord& rec) = 0;
 };

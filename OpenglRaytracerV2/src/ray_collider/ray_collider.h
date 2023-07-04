@@ -7,7 +7,7 @@
 //number of samples per pixel for antialiasing
 constexpr uint32_t samplesPerPixel = 3;
 
-class RayCollider {
+class RayCollider : public CudaManaged {
 private:
 	Camera* camera;
 	Scene* scene;
@@ -15,5 +15,5 @@ private:
 public:
 	RayCollider(Camera* camera, Scene* scene, Renderer* renderer);
 
-	void calculate_collisions();
+	__global__ void calculate_collisions();
 };

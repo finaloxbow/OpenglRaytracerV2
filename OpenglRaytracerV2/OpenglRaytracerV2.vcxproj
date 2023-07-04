@@ -143,7 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\camera\camera.cpp" />
-    <ClCompile Include="src\entry_point.cpp" />
+    <ClCompile Include="src\entry_point.cu" />
     <ClCompile Include="src\hittable_objects\hittable_list\hittable_list.cpp" />
     <ClCompile Include="src\hittable_objects\sphere\sphere.cpp" />
     <ClCompile Include="src\materials\lambertian\lambertian.cpp" />

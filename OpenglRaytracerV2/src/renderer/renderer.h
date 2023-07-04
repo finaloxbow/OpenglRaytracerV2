@@ -5,7 +5,7 @@
 
 #include "../src/common.h"
 
-class Renderer {
+class Renderer : public CudaManaged {
 private:
 	GLubyte* _framebuffer;
 	uint64_t _framebuffer_size;

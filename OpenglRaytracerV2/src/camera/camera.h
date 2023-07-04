@@ -9,7 +9,7 @@
 
 const float camSpeed = 0.05f;
 
-class Camera {
+class Camera : public CudaManaged {
 private:
 	glm::vec3 _cameraPos;
 	glm::vec3 _cameraFront;

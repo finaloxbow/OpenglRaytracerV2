@@ -8,8 +8,9 @@ Sphere::Sphere(glm::vec3 center, float r, std::shared_ptr<Material> m)
 bool Sphere::hit(Ray& r, float tMin, float tMax, HitRecord& rec)
 {
     glm::vec3 oc = r.origin() - center;
-    float a = glm::length2(r.direction());
-    auto half_b = glm::dot(oc, r.direction());
+    glm::vec3 r_dir = r.direction();
+    float a = glm::dot(r_dir, r_dir);
+    auto half_b = glm::dot(oc, r_dir);
     auto c = glm::dot(oc, oc) - radius*radius;
     auto discriminant = half_b * half_b - a * c;
 

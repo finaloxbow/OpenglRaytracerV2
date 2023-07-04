@@ -2,7 +2,7 @@
 #include <glfw/glfw3.h>
 #include "../camera/camera.h"
 
-class Window {
+class Window : public CudaManaged {
 private:
 	GLFWwindow* _window;
 	Camera* camera;
