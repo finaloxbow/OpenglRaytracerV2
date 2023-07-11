@@ -101,9 +101,9 @@ void Renderer::update_pixel(uint64_t x, uint64_t y, glm::vec4& rgba)
 		auto blue = rgba.z;
 		auto alpha = rgba.t;
 
-		_framebuffer[x * WINDOW_WIDTH * NUM_CHANNELS + y * NUM_CHANNELS + 0] = static_cast<int>(256 * clamp(red, 0.0f, 0.999f));
+		/*_framebuffer[x * WINDOW_WIDTH * NUM_CHANNELS + y * NUM_CHANNELS + 0] = static_cast<int>(256 * clamp(red, 0.0f, 0.999f));
 		_framebuffer[x * WINDOW_WIDTH * NUM_CHANNELS + y * NUM_CHANNELS + 1] = static_cast<int>(256 * clamp(green, 0.0f, 0.999f));
 		_framebuffer[x * WINDOW_WIDTH * NUM_CHANNELS + y * NUM_CHANNELS + 2] = static_cast<int>(256 * clamp(blue, 0.0f, 0.999f));
-		_framebuffer[x * WINDOW_WIDTH * NUM_CHANNELS + y * NUM_CHANNELS + 3] = static_cast<int>(256 * clamp(alpha, 0.0f, 0.999f));
+		_framebuffer[x * WINDOW_WIDTH * NUM_CHANNELS + y * NUM_CHANNELS + 3] = static_cast<int>(256 * clamp(alpha, 0.0f, 0.999f));*/
 	}
 }

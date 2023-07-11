@@ -14,8 +14,8 @@ void Window::cleanup()
 	glfwTerminate();
 }
 
-Window::Window(uint32_t width, uint32_t height, const char* title, Camera* camera)
-: camera(camera) {
+Window::Window(uint32_t width, uint32_t height, const char* title)
+{
 	_window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 	glfwMakeContextCurrent(_window);
 	glfwSwapInterval(0);
@@ -42,17 +42,5 @@ void Window::processInput()
 {
 	if (glfwGetKey(_window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 		glfwSetWindowShouldClose(_window, true);
-	}
-	if (glfwGetKey(_window, GLFW_KEY_W) == GLFW_PRESS) {
-		camera->moveForward();
-	}
-	if (glfwGetKey(_window, GLFW_KEY_S) == GLFW_PRESS) {
-		camera->moveBackward();
-	}
-	if (glfwGetKey(_window, GLFW_KEY_A) == GLFW_PRESS) {
-		camera->moveLeft();
-	}
-	if (glfwGetKey(_window, GLFW_KEY_D) == GLFW_PRESS) {
-		camera->moveRight();
 	}
 }

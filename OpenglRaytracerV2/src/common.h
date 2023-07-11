@@ -20,55 +20,6 @@ constexpr uint64_t NUM_CHANNELS = 4;
 constexpr float infinity = std::numeric_limits<float>::infinity();
 constexpr float pi = 3.1415926535897932385f;
 
-//clamps values between min and max
-inline float clamp(float val, float min, float max) {
-	if (val < min) return min;
-	else if (val > max) return max;
-	else return val;
-}
-
-inline float degrees_to_radians(float degrees) {
-	return degrees * pi / 180.0f;
-}
-
-inline float randomFloat() {
-	return rand() / (RAND_MAX + 1.0f);
-}
-
-inline float randomFloat(float min, float max) {
-	return min + (max - min) * randomFloat();
-}
-
-inline static glm::vec3 randomVec3() {
-	return glm::vec3(randomFloat(), randomFloat(), randomFloat());
-}
-
-inline static glm::vec3 randomVec3(float min, float max) {
-	return glm::vec3(randomFloat(min, max), randomFloat(min, max), randomFloat(min, max));
-}
-
-inline static glm::vec3 randomInUnitSphere() {
-	while (true) {
-		glm::vec3 p = randomVec3(-1, 1);
-		if (glm::length2(p) >= 1) continue;
-		return p;
-	}
-
-	return glm::vec3(0, 0, 0);
-}
-
-inline static glm::vec3 randomUnitVector() {
-	return glm::normalize(randomVec3());
-}
-
-inline static bool nearZero(glm::vec3& v) {
-	const float s = 1e-8f;
-	return (fabs(v.x) < s) && (fabs(v.y) < s) && (fabs(v.z) < s);
-}
-
-inline static glm::vec3 reflect(glm::vec3& v, glm::vec3& n) {
-	return v - 2 * glm::dot(v, n) * n;
-}
 
 #define checkCudaErrors(val) checkCuda((val), #val, __FILE__, __LINE__)
 inline void checkCuda(cudaError_t result, char* func, char* file, char* line) {
