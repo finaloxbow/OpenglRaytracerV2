@@ -123,6 +123,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <CudaCompile>
+      <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
+    </CudaCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -140,18 +143,21 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <CudaCompile>
+      <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
+    </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\renderer\renderer.cpp" />
     <ClCompile Include="src\window\window.cpp" />
     <ClCompile Include="vendor\glad.c" />
     <ClCompile Include="vendor\glm\detail\glm.cpp" />
     <ClCompile Include="vendor\stb_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
-	  <CudaCompile Include="src\entry_point.cu" />
-	  <CudaCompile Include="src\ray\ray.cu" />
-	  <CudaCompile Include="src\ray_collider\ray_collider.cu" />
+    <CudaCompile Include="src\entry_point.cu" />
+    <CudaCompile Include="src\ray\ray.cu" />
+    <CudaCompile Include="src\ray_collider\ray_collider.cu" />
+    <CudaCompile Include="src\renderer\renderer.cu" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.h" />

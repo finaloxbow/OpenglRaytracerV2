@@ -19,6 +19,6 @@ public:
 
 	void framebuffer_setup();
 	void update_frame();
-	void update_pixel(uint64_t x, uint64_t y, glm::vec4& rgba);
+	__device__ void update_pixel(uint64_t x, uint64_t y, glm::vec3& rgba);
 
 };

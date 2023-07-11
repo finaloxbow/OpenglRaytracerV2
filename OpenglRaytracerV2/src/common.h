@@ -22,7 +22,7 @@ constexpr float pi = 3.1415926535897932385f;
 
 
 #define checkCudaErrors(val) checkCuda((val), #val, __FILE__, __LINE__)
-inline void checkCuda(cudaError_t result, char* func, char* file, char* line) {
+inline void checkCuda(cudaError_t result, const char* func, const char* file, int line) {
 	if (result) {
 		std::cerr << "CUDA error = " << static_cast<unsigned int>(result) << " at "
 			<< file << ":" << line << " '" << func << "\n";
@@ -36,13 +36,13 @@ class CudaManaged {
 public:
 	void* operator new(size_t len) {
 		void* ptr;
-		cudaMallocManaged(&ptr, len);
-		cudaDeviceSynchronize();
+		checkCudaErrors(cudaMallocManaged(&ptr, len));
+		checkCudaErrors(cudaDeviceSynchronize());
 		return ptr;
 	}
 
 	void operator delete(void* ptr) {
-		cudaDeviceSynchronize();
-		cudaFree(ptr);
+		checkCudaErrors(cudaDeviceSynchronize());
+		checkCudaErrors(cudaFree(ptr));
 	}
 };

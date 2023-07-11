@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\entry_point.cu">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="vendor\stb_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -28,33 +25,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\window\window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ray\ray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ray_collider\ray_collider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\camera\camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\hittable_objects\sphere\sphere.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\hittable_objects\hittable_list\hittable_list.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\materials\lambertian\lambertian.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\materials\metal\metal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -932,31 +902,7 @@
     <ClInclude Include="src\ray\ray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\camera\camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\ray_collider\ray_collider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\hittable_objects\hittable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\hittable_objects\sphere\sphere.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\hittable_objects\hittable_list\hittable_list.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\materials\material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\materials\lambertian\lambertian.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\materials\metal\metal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1375,5 +1321,11 @@
     <Library Include="vendor\glfw\glfw3_mt.lib" />
     <Library Include="vendor\glfw\glfw3.lib" />
     <Library Include="vendor\glfw\glfw3dll.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="src\entry_point.cu" />
+    <CudaCompile Include="src\ray\ray.cu" />
+    <CudaCompile Include="src\ray_collider\ray_collider.cu" />
+    <CudaCompile Include="src\renderer\renderer.cu" />
   </ItemGroup>
 </Project>
